@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="MINTOIBA Zack — Développeur Web Freelance basé à Lomé, Togo. Portfolio, projets, équipe et recrutement."/>
+<meta name="author" content="MINTOIBA Zack"/>
+<meta property="og:title" content="MINTOIBA Zack | Développeur Web Freelance"/>
+<meta property="og:description" content="Portfolio pro, projets web et recrutement — M. Zack, dev freelance basé à Lomé, Togo."/>
+<title>MINTOIBA Zack | Développeur Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ===== TOKENS ===== */
+:root {
+  --bg: #080D1A;
+  --surface: #0F1629;
+  --surface2: #141B30;
+  --border: #1E2D4A;
+  --text: #E8EEFF;
+  --muted: #6B7A99;
+  --accent: #3B82F6;
+  --cyan: #06B6D4;
+  --glow: rgba(59,130,246,0.18);
+  --glow2: rgba(6,182,212,0.12);
+  --danger: #EF4444;
+  --success: #10B981;
+  --warn: #F59E0B;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --trans: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="light"] {
+  --bg: #F0F4FF;
+  --surface: #FFFFFF;
+  --surface2: #F7F9FD;
+  --border: #DDE5F7;
+  --text: #0A0F1E;
+  --muted: #5A6888;
+  --glow: rgba(59,130,246,0.10);
+  --glow2: rgba(6,182,212,0.08);
+  --shadow: 0 8px 32px rgba(10,15,30,0.12);
+}
+
+/* ===== RESET ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background 0.4s,color 0.4s;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;}
+input,select,textarea{font-family:inherit;}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px;}
+::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+
+/* ===== NAVBAR ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,13,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:var(--trans);}
+[data-theme="light"] .nav{background:rgba(240,244,255,0.88);}
+.nav.scrolled{border-bottom-color:var(--border);}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.5px;}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{font-size:0.88rem;font-weight:500;color:var(--muted);transition:var(--trans);letter-spacing:0.02em;}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.theme-btn{width:40px;height:40px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:var(--trans);font-size:0.9rem;}
+.theme-btn:hover{color:var(--accent);border-color:var(--accent);background:var(--glow);}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:var(--trans);}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;padding:120px 8% 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-30%;right:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-20%;left:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,var(--glow2) 0%,transparent 70%);pointer-events:none;}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:var(--glow);border:1px solid var(--accent);color:var(--accent);font-size:0.78rem;font-weight:600;padding:0.35rem 0.9rem;border-radius:100px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.4rem;}
+.hero-tag .dot{width:7px;height:7px;background:var(--success);border-radius:50%;animation:blink 1.5s infinite;}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700;line-height:1.1;letter-spacing:-1.5px;margin-bottom:0.5rem;}
+.hero h1 .accent{background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.05rem;color:var(--muted);margin-bottom:2rem;max-width:480px;line-height:1.7;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;}
+.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;font-weight:600;padding:0.75rem 1.8rem;border-radius:100px;font-size:0.9rem;transition:var(--trans);box-shadow:0 4px 24px var(--glow);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--glow);}
+.btn-secondary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--surface);border:1px solid var(--border);color:var(--text);font-weight:500;padding:0.75rem 1.8rem;border-radius:100px;font-size:0.9rem;transition:var(--trans);}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);background:var(--glow);}
+.hero-stats{display:flex;gap:2.5rem;}
+.stat{text-align:left;}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--accent);line-height:1;}
+.stat-label{font-size:0.78rem;color:var(--muted);margin-top:0.2rem;}
+/* Terminal */
+.terminal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.terminal-bar{display:flex;align-items:center;gap:0.5rem;padding:0.9rem 1.2rem;background:var(--surface2);border-bottom:1px solid var(--border);}
+.t-dot{width:11px;height:11px;border-radius:50%;}
+.t-dot:nth-child(1){background:#FF5F57;}
+.t-dot:nth-child(2){background:#FFBD2E;}
+.t-dot:nth-child(3){background:#28CA41;}
+.terminal-title{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted);margin-left:auto;}
+.terminal-body{padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.9;min-height:280px;}
+.t-line{opacity:0;transform:translateY(4px);transition:opacity 0.3s, transform 0.3s;}
+.t-line.show{opacity:1;transform:none;}
+.t-prompt{color:var(--accent);}
+.t-out{color:var(--cyan);}
+.t-comment{color:var(--muted);}
+.t-success{color:var(--success);}
+.cursor{display:inline-block;width:8px;height:14px;background:var(--accent);animation:cursor-blink 1s step-end infinite;vertical-align:middle;margin-left:2px;}
+
+/* ===== SECTION COMMON ===== */
+section{padding:90px 8%;}
+.section-label{display:inline-block;font-size:0.75rem;font-weight:600;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.8rem;}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-0.5px;line-height:1.15;margin-bottom:1rem;}
+.section-desc{color:var(--muted);font-size:1rem;max-width:520px;line-height:1.7;margin-bottom:3rem;}
+.divider{width:50px;height:3px;background:linear-gradient(90deg,var(--accent),var(--cyan));border-radius:3px;margin:1rem 0 2rem;}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-img-wrap{position:relative;}
+.about-img{width:100%;aspect-ratio:4/5;background:var(--surface2);border-radius:var(--radius);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.about-img-bg{width:100%;height:100%;background:linear-gradient(135deg,var(--glow) 0%,var(--glow2) 100%);display:flex;align-items:center;justify-content:center;}
+.about-img-icon{font-size:6rem;opacity:0.25;}
+.about-badge{position:absolute;bottom:-18px;right:-18px;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;padding:1rem 1.4rem;border-radius:var(--radius-sm);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;box-shadow:var(--shadow);}
+.about-badge span{display:block;font-size:0.7rem;font-weight:400;opacity:0.8;margin-top:0.2rem;}
+.about-text h2{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:1.2rem;letter-spacing:-0.5px;}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;}
+.about-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;}
+.tag{background:var(--glow);border:1px solid var(--border);color:var(--accent);font-size:0.78rem;font-weight:500;padding:0.3rem 0.85rem;border-radius:100px;}
+
+/* ===== SKILLS ===== */
+.skills-section{background:var(--surface2);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:var(--trans);}
+.skill-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 40px var(--glow);}
+.skill-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.skill-icon{width:42px;height:42px;border-radius:var(--radius-sm);background:var(--glow);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--accent);}
+.skill-pct{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--accent);}
+.skill-name{font-weight:600;font-size:0.95rem;margin-bottom:0.5rem;}
+.skill-bar-bg{height:5px;background:var(--border);border-radius:5px;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--cyan));width:0;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
+
+/* ===== PROJECTS ===== */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--trans);position:relative;group;}
+.project-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 16px 48px var(--glow);}
+.project-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
+.project-thumb-overlay{position:absolute;inset:0;background:linear-gradient(135deg,var(--glow),var(--glow2));opacity:0;transition:var(--trans);}
+.project-card:hover .project-thumb-overlay{opacity:1;}
+.project-body{padding:1.4rem;}
+.project-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.7rem;}
+.project-type{font-size:0.72rem;font-weight:600;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;}
+.project-year{font-size:0.72rem;color:var(--muted);}
+.project-name{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;}
+.project-desc{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;}
+.project-tag{font-size:0.72rem;padding:0.2rem 0.6rem;background:var(--surface2);border:1px solid var(--border);border-radius:100px;color:var(--muted);}
+.project-links{display:flex;gap:0.7rem;}
+.project-link{font-size:0.8rem;font-weight:500;color:var(--accent);display:flex;align-items:center;gap:0.3rem;transition:var(--trans);}
+.project-link:hover{color:var(--cyan);}
+
+/* ===== TEAM ===== */
+.team-section{background:var(--surface2);}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;}
+.team-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;text-align:center;transition:var(--trans);position:relative;}
+.team-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 36px var(--glow);}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem;border:3px solid var(--border);}
+.team-name{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.2rem;}
+.team-role{font-size:0.82rem;color:var(--accent);font-weight:500;margin-bottom:0.8rem;}
+.team-contact{font-size:0.8rem;color:var(--muted);margin-bottom:1rem;word-break:break-all;}
+.team-like-btn{display:inline-flex;align-items:center;gap:0.4rem;background:var(--surface2);border:1px solid var(--border);padding:0.4rem 1rem;border-radius:100px;font-size:0.85rem;transition:var(--trans);color:var(--muted);}
+.team-like-btn:hover,.team-like-btn.liked{color:#F43F5E;border-color:#F43F5E;background:rgba(244,63,94,0.08);}
+.team-card.admin-mode .team-admin-actions{display:flex;}
+.team-admin-actions{display:none;position:absolute;top:10px;right:10px;gap:0.4rem;}
+.team-admin-btn{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;transition:var(--trans);cursor:pointer;}
+.team-admin-btn.edit{background:var(--glow);color:var(--accent);border:1px solid var(--accent);}
+.team-admin-btn.del{background:rgba(239,68,68,0.1);color:var(--danger);border:1px solid var(--danger);}
+.empty-team{text-align:center;padding:3rem;color:var(--muted);font-style:italic;}
+.add-member-btn{display:inline-flex;align-items:center;gap:0.6rem;background:var(--glow);border:1px dashed var(--accent);color:var(--accent);padding:0.7rem 1.5rem;border-radius:var(--radius-sm);font-size:0.9rem;font-weight:500;transition:var(--trans);margin-top:2rem;}
+.add-member-btn:hover{background:var(--accent);color:#fff;border-style:solid;}
+#add-member-wrap{display:none;}
+#add-member-wrap.show{display:block;}
+
+/* ===== RECRUITMENT ===== */
+.recruit-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;}
+.recruit-info h2{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:1rem;letter-spacing:-0.5px;}
+.recruit-info p{color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
+.recruit-perks{display:flex;flex-direction:column;gap:1rem;}
+.perk{display:flex;align-items:flex-start;gap:1rem;}
+.perk-icon{width:38px;height:38px;border-radius:var(--radius-sm);background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1rem;flex-shrink:0;}
+.perk-text strong{display:block;font-size:0.9rem;font-weight:600;margin-bottom:0.2rem;}
+.perk-text span{font-size:0.82rem;color:var(--muted);}
+.recruit-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:0.5rem;}
+.form-group.full{grid-column:1/-1;}
+.form-label{font-size:0.82rem;font-weight:600;color:var(--text);}
+.form-input,.form-select,.form-textarea{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;transition:var(--trans);outline:none;width:100%;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow);}
+.form-textarea{resize:vertical;min-height:100px;}
+.form-select option{background:var(--surface);}
+.submit-btn{width:100%;padding:0.85rem;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;font-weight:600;font-size:1rem;border-radius:var(--radius-sm);transition:var(--trans);margin-top:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px var(--glow);}
+.form-success{display:none;text-align:center;padding:2rem;color:var(--success);}
+.form-success i{font-size:3rem;margin-bottom:1rem;display:block;}
+
+/* ===== CONTACT ===== */
+.contact-section{background:var(--surface2);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:3rem;}
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;transition:var(--trans);}
+.contact-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 36px var(--glow);}
+.contact-icon{width:52px;height:52px;border-radius:var(--radius-sm);background:var(--glow);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--accent);margin-bottom:1.2rem;}
+.contact-type{font-size:0.75rem;font-weight:600;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;}
+.contact-value{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:1rem;word-break:break-all;}
+.contact-btns{display:flex;gap:0.6rem;flex-wrap:wrap;}
+.contact-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;border-radius:100px;font-size:0.8rem;font-weight:500;transition:var(--trans);border:1px solid var(--border);}
+.contact-btn.wa{background:rgba(37,211,102,0.1);border-color:rgba(37,211,102,0.3);color:#25D366;}
+.contact-btn.wa:hover{background:#25D366;color:#fff;}
+.contact-btn.call{background:var(--glow);border-color:var(--accent);color:var(--accent);}
+.contact-btn.call:hover{background:var(--accent);color:#fff;}
+.contact-btn.mail{background:rgba(234,179,8,0.1);border-color:rgba(234,179,8,0.3);color:#EAB308;}
+.contact-btn.mail:hover{background:#EAB308;color:#fff;}
+.contact-cta{text-align:center;padding:3rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);background-image:radial-gradient(ellipse at 50% 100%,var(--glow) 0%,transparent 70%);}
+.contact-cta h3{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;margin-bottom:0.8rem;}
+.contact-cta p{color:var(--muted);margin-bottom:1.8rem;}
+
+/* ===== FOOTER ===== */
+.footer{padding:2.5rem 8%;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:1rem;}
+.footer-logo{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.footer-copy{font-size:0.82rem;color:var(--muted);text-align:center;}
+.footer-year{cursor:default;user-select:none;}
+.footer-links{display:flex;gap:1.2rem;}
+.footer-links a{font-size:0.82rem;color:var(--muted);transition:var(--trans);}
+.footer-links a:hover{color:var(--accent);}
+.footer-social{display:flex;gap:0.8rem;}
+.footer-social a{width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.85rem;transition:var(--trans);}
+.footer-social a:hover{color:var(--accent);border-color:var(--accent);}
+
+/* ===== MODALS ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);width:100%;max-width:420px;padding:2.5rem;box-shadow:var(--shadow);}
+.modal-icon{width:56px;height:56px;border-radius:var(--radius-sm);background:var(--glow);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--accent);margin:0 auto 1.5rem;}
+.modal h3{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:700;text-align:center;margin-bottom:0.5rem;}
+.modal p{font-size:0.85rem;color:var(--muted);text-align:center;margin-bottom:1.5rem;}
+.modal-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.75rem 1rem;color:var(--text);font-size:0.95rem;outline:none;transition:var(--trans);margin-bottom:0.5rem;}
+.modal-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow);}
+.modal-err{font-size:0.8rem;color:var(--danger);text-align:center;min-height:1.2rem;margin-bottom:0.5rem;}
+.modal-btn{width:100%;padding:0.8rem;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;font-weight:600;border-radius:var(--radius-sm);font-size:0.95rem;transition:var(--trans);}
+.modal-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--glow);}
+.modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;cursor:pointer;transition:var(--trans);}
+.modal-close:hover{color:var(--danger);border-color:var(--danger);}
+.modal{position:relative;}
+
+/* ===== ADMIN PANEL ===== */
+.admin-panel{position:fixed;inset:0;background:var(--bg);z-index:9998;display:none;flex-direction:column;overflow-y:auto;}
+.admin-panel.show{display:flex;}
+.admin-header{padding:1.2rem 2rem;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;}
+.admin-title{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;display:flex;align-items:center;gap:0.6rem;}
+.admin-badge{background:var(--danger);color:#fff;font-size:0.65rem;padding:0.15rem 0.5rem;border-radius:100px;font-weight:700;}
+.admin-close{padding:0.5rem 1.2rem;background:var(--danger);color:#fff;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;transition:var(--trans);}
+.admin-close:hover{opacity:0.85;}
+.admin-body{flex:1;padding:2rem;}
+.admin-tabs{display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
+.admin-tab{padding:0.55rem 1.4rem;border-radius:100px;font-size:0.85rem;font-weight:500;border:1px solid var(--border);color:var(--muted);transition:var(--trans);cursor:pointer;}
+.admin-tab.active,.admin-tab:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+.admin-section{display:none;}
+.admin-section.active{display:block;}
+.admin-section h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;}
+.admin-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:2rem;}
+.admin-form h4{font-size:0.95rem;font-weight:600;margin-bottom:1rem;color:var(--accent);}
+.admin-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+.admin-input{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.6rem 0.9rem;color:var(--text);font-size:0.85rem;outline:none;transition:var(--trans);width:100%;}
+.admin-input:focus{border-color:var(--accent);}
+.admin-btn{padding:0.6rem 1.4rem;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;transition:var(--trans);cursor:pointer;}
+.admin-btn.primary{background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;border:none;}
+.admin-btn.danger{background:rgba(239,68,68,0.1);border:1px solid var(--danger);color:var(--danger);}
+.admin-btn:hover{opacity:0.85;transform:translateY(-1px);}
+.submissions-list{display:flex;flex-direction:column;gap:1rem;}
+.sub-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--border);border-radius:var(--radius-sm);padding:1.2rem;transition:var(--trans);}
+.sub-card.status-en_attente{border-left-color:var(--warn);}
+.sub-card.status-accepte{border-left-color:var(--success);}
+.sub-card.status-refuse{border-left-color:var(--danger);opacity:0.75;}
+.sub-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.7rem;flex-wrap:wrap;gap:0.5rem;}
+.sub-name{font-weight:600;font-size:0.95rem;}
+.sub-header-right{display:flex;align-items:center;gap:0.5rem;}
+.sub-domain{font-size:0.75rem;background:var(--glow);border:1px solid var(--border);color:var(--accent);padding:0.2rem 0.7rem;border-radius:100px;}
+.sub-status-badge{font-size:0.72rem;font-weight:600;padding:0.2rem 0.7rem;border-radius:100px;display:inline-flex;align-items:center;gap:0.3rem;}
+.sub-status-badge.en_attente{background:rgba(245,158,11,0.12);color:var(--warn);border:1px solid rgba(245,158,11,0.4);}
+.sub-status-badge.accepte{background:rgba(16,185,129,0.12);color:var(--success);border:1px solid rgba(16,185,129,0.4);}
+.sub-status-badge.refuse{background:rgba(239,68,68,0.12);color:var(--danger);border:1px solid rgba(239,68,68,0.4);}
+.sub-info{font-size:0.82rem;color:var(--muted);}
+.sub-date{font-size:0.75rem;color:var(--muted);margin-top:0.4rem;}
+.sub-actions{display:flex;gap:0.5rem;margin-top:0.9rem;flex-wrap:wrap;}
+.sub-promote-btn{font-size:0.78rem;padding:0.35rem 0.85rem;background:var(--glow);border:1px solid var(--accent);color:var(--accent);border-radius:100px;cursor:pointer;transition:var(--trans);}
+.sub-promote-btn:hover{background:var(--accent);color:#fff;}
+.sub-del-btn{font-size:0.78rem;padding:0.35rem 0.85rem;background:rgba(239,68,68,0.08);border:1px solid var(--danger);color:var(--danger);border-radius:100px;cursor:pointer;transition:var(--trans);}
+.sub-del-btn:hover{background:var(--danger);color:#fff;}
+.sub-accept-btn{font-size:0.78rem;padding:0.35rem 0.85rem;background:rgba(16,185,129,0.08);border:1px solid var(--success);color:var(--success);border-radius:100px;cursor:pointer;transition:var(--trans);}
+.sub-accept-btn:hover{background:var(--success);color:#fff;}
+.sub-accept-btn.active{background:var(--success);color:#fff;}
+.sub-refuse-btn{font-size:0.78rem;padding:0.35rem 0.85rem;background:rgba(239,68,68,0.08);border:1px solid var(--danger);color:var(--danger);border-radius:100px;cursor:pointer;transition:var(--trans);}
+.sub-refuse-btn:hover{background:var(--danger);color:#fff;}
+.sub-refuse-btn.active{background:var(--danger);color:#fff;}
+.sub-pending-btn{font-size:0.78rem;padding:0.35rem 0.85rem;background:rgba(245,158,11,0.08);border:1px solid var(--warn);color:var(--warn);border-radius:100px;cursor:pointer;transition:var(--trans);}
+.sub-pending-btn:hover,.sub-pending-btn.active{background:var(--warn);color:#fff;}
+.recruit-filters{display:flex;gap:0.6rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.recruit-filter-btn{padding:0.45rem 1.1rem;border-radius:100px;font-size:0.82rem;font-weight:500;border:1px solid var(--border);color:var(--muted);transition:var(--trans);cursor:pointer;background:var(--surface);}
+.recruit-filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.admin-error-banner{background:rgba(239,68,68,0.1);border:1px solid var(--danger);color:var(--danger);padding:1rem 1.2rem;border-radius:var(--radius-sm);font-size:0.85rem;margin-bottom:1.5rem;display:none;align-items:flex-start;gap:0.7rem;}
+.admin-error-banner.show{display:flex;}
+.admin-team-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
+.admin-member-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.2rem;text-align:center;}
+.admin-member-name{font-weight:600;margin-bottom:0.3rem;}
+.admin-member-role{font-size:0.8rem;color:var(--accent);margin-bottom:0.3rem;}
+.admin-member-contact{font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;}
+.admin-like-ctrl{display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-bottom:0.8rem;}
+.like-ctrl-btn{width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:0.7rem;cursor:pointer;transition:var(--trans);color:var(--muted);}
+.like-ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
+.like-count-display{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:#F43F5E;min-width:30px;text-align:center;}
+.no-data{text-align:center;padding:2.5rem;color:var(--muted);font-style:italic;}
+
+/* ===== EDIT MEMBER MODAL ===== */
+.edit-modal-body{display:flex;flex-direction:column;gap:0.8rem;}
+.edit-modal-body .modal-input{margin-bottom:0;}
+
+/* ===== TOAST ===== */
+.toast-wrap{position:fixed;bottom:2rem;right:2rem;z-index:99999;display:flex;flex-direction:column;gap:0.6rem;pointer-events:none;}
+.toast{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.8rem 1.2rem;font-size:0.85rem;font-weight:500;display:flex;align-items:center;gap:0.6rem;box-shadow:var(--shadow);animation:toastIn 0.3s ease;pointer-events:none;}
+.toast.success{border-color:var(--success);color:var(--success);}
+.toast.error{border-color:var(--danger);color:var(--danger);}
+.toast.info{border-color:var(--accent);color:var(--accent);}
+
+/* ===== ANIMATIONS ===== */
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes cursor-blink{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes toastIn{from{transform:translateX(100%);opacity:0;}to{transform:none;opacity:1;}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+.fade-in-up{opacity:0;}
+.fade-in-up.visible{animation:fadeInUp 0.6s ease forwards;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:3rem;padding:100px 5% 60px;text-align:center;}
+  .hero .hero-btns{justify-content:center;}
+  .hero .hero-stats{justify-content:center;}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .about-img-wrap{max-width:300px;margin:0 auto;}
+  .recruit-wrap{grid-template-columns:1fr;}
+  .footer{flex-direction:column;text-align:center;}
+  .nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);flex-direction:column;padding:1.5rem;gap:1.2rem;}
+  .nav-links.open{display:flex;}
+  .burger{display:flex;}
+  .hero::before,.hero::after{display:none;}
+  .form-grid{grid-template-columns:1fr;}
+  .admin-mini-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  section{padding:60px 5%;}
+  .hero h1{letter-spacing:-1px;}
+  .contact-btns{flex-direction:column;}
+}
+
+/* ===== SECTION DIVIDERS ===== */
+.section-sep{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 8%;}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="nav" id="navbar">
+  <a href="#" class="nav-logo">MZ.</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">À propos</a>
+    <a href="#skills">Compétences</a>
+    <a href="#projects">Projets</a>
+    <a href="#team">Équipe</a>
+    <a href="#recruitment">Rejoindre</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeToggle" title="Changer de thème"><i class="fas fa-moon" id="themeIcon"></i></button>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-content fade-in-up">
+    <div class="hero-tag"><span class="dot"></span> Disponible pour projets</div>
+    <h1>MINTOIBA<br><span class="accent">Zack</span></h1>
+    <p class="hero-sub">Développeur Web Freelance basé à Lomé, Togo. Nous construisons des expériences digitales modernes, performantes et orientées résultats.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary"><i class="fas fa-folder-open"></i> Voir mes projets</a>
+      <a href="#contact" class="btn-secondary"><i class="fas fa-paper-plane"></i>  NOUS contacter</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" id="st1">0</div><div class="stat-label">Projets livrés</div></div>
+      <div class="stat"><div class="stat-num" id="st2">0</div><div class="stat-label">Clients satisfaits</div></div>
+      <div class="stat"><div class="stat-num" id="st3">0</div><div class="stat-label">Ans d'expérience</div></div>
+    </div>
+  </div>
+  <div class="terminal fade-in-up" style="animation-delay:0.2s">
+    <div class="terminal-bar">
+      <div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div>
+      <span class="terminal-title">zack@dev:~/portfolio</span>
+    </div>
+    <div class="terminal-body" id="termBody">
+      <div class="t-line" id="tl1"><span class="t-prompt">$</span> whoami</div>
+      <div class="t-line" id="tl2"><span class="t-out">→ MINTOIBA Zack, Développeur Web Freelance et équipe 🇹🇬</span></div>
+      <div class="t-line" id="tl3"><span class="t-prompt">$</span> cat skills.json</div>
+      <div class="t-line" id="tl4"><span class="t-out">{ HTML, CSS, JS, Python, Firebase, PWA }</span></div>
+      <div class="t-line" id="tl5"><span class="t-prompt">$</span> git log --oneline -3</div>
+      <div class="t-line" id="tl6"><span class="t-out">a3f1c29 - feat: StoryNova v2 launch</span></div>
+      <div class="t-line" id="tl7"><span class="t-out">b9e2k11 - feat: Syndrix dashboard</span></div>
+      <div class="t-line" id="tl8"><span class="t-out">c7d5m88 - feat: Site auteur MINTOIBA</span></div>
+      <div class="t-line" id="tl9"><span class="t-comment"># 🔥 Status: currently building cool things</span></div>
+      <div class="t-line" id="tl10"><span class="t-prompt">$</span> <span class="cursor"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" style="padding:90px 8%;">
+  <div class="about-grid">
+    <div class="about-img-wrap fade-in-up">
+      <div class="about-img">
+        <div class="about-img-bg"><i class="fas fa-user about-img-icon"></i></div>
+      </div>
+      <div class="about-badge">1+ <span>ans d'expérience</span></div>
+    </div>
+    <div class="about-text fade-in-up">
+      <div class="section-label">À propos</div>
+      <h2>Développeur Web passionné & créatif</h2>
+      <div class="divider"></div>
+      <p>Je suis <strong>MINTOIBA Zack</strong>, développeur web freelance basé à Lomé, Togo. moi et mon équipe créons des solutions digitales sur mesure pour des entreprises, artistes et entrepreneurs qui veulent une présence en ligne qui fait vraiment la différence.</p>
+      <p>De la conception à la mise en ligne, nous accompagnons nos clients avec un regard créatif, des interfaces fluides et un code propre. Chaque projet est une opportunité de repousser les limites du design web africain.</p>
+      <p>Quand je ne code pas, j'explore le game dev et la création d'apps innovantes. Le digital, c'est ma passion — pas juste mon métier. 🚀</p>
+      <div class="about-tags">
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Python</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">PWA</span>
+        <span class="tag">UI/UX</span>
+        <span class="tag">Freelance</span>
+        <span class="tag">Lomé, Togo 🇹🇬</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills" class="skills-section">
+  <div style="text-align:center;margin-bottom:3rem;">
+    <div class="section-label">Compétences</div>
+    <h2 class="section-title">Mon arsenal technique</h2>
+    <p class="section-desc" style="margin:0 auto;">Des outils maîtrisés, affinés projet après projet sur le terrain.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card fade-in-up" data-pct="95">
+      <div class="skill-top"><div class="skill-icon"><i class="fab fa-html5"></i></div><span class="skill-pct">95%</span></div>
+      <div class="skill-name">HTML5 / CSS3</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="95"></div></div>
+    </div>
+    <div class="skill-card fade-in-up" data-pct="88">
+      <div class="skill-top"><div class="skill-icon"><i class="fab fa-js-square"></i></div><span class="skill-pct">88%</span></div>
+      <div class="skill-name">JavaScript (ES6+)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="88"></div></div>
+    </div>
+    <div class="skill-card fade-in-up" data-pct="78">
+      <div class="skill-top"><div class="skill-icon"><i class="fab fa-python"></i></div><span class="skill-pct">78%</span></div>
+      <div class="skill-name">Python</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="78"></div></div>
+    </div>
+    <div class="skill-card fade-in-up" data-pct="75">
+      <div class="skill-top"><div class="skill-icon"><i class="fas fa-fire"></i></div><span class="skill-pct">75%</span></div>
+      <div class="skill-name">Firebase / Firestore</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="75"></div></div>
+    </div>
+    <div class="skill-card fade-in-up" data-pct="72">
+      <div class="skill-top"><div class="skill-icon"><i class="fas fa-mobile-alt"></i></div><span class="skill-pct">72%</span></div>
+      <div class="skill-name">PWA / Apps mobiles</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="72"></div></div>
+    </div>
+    <div class="skill-card fade-in-up" data-pct="82">
+      <div class="skill-top"><div class="skill-icon"><i class="fas fa-paint-brush"></i></div><span class="skill-pct">82%</span></div>
+      <div class="skill-name">UI/UX Design</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="82"></div></div>
+    </div>
+    <div class="skill-card fade-in-up" data-pct="70">
+      <div class="skill-top"><div class="skill-icon"><i class="fas fa-chart-line"></i></div><span class="skill-pct">70%</span></div>
+      <div class="skill-name">Chart.js / Data Viz</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="70"></div></div>
+    </div>
+    <div class="skill-card fade-in-up" data-pct="65">
+      <div class="skill-top"><div class="skill-icon"><i class="fas fa-gamepad"></i></div><span class="skill-pct">65%</span></div>
+      <div class="skill-name">Game Dev (Web)</div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-w="65"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects" style="padding:90px 8%;">
+  <div style="text-align:center;margin-bottom:3rem;">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Projets récents</h2>
+    <p class="section-desc" style="margin:0 auto;">Des réalisations concrètes, livrées à des clients ou développées pour ma croissance.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card fade-in-up">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1a0535,#3d0a6b);">📖<div class="project-thumb-overlay"></div></div>
+      <div class="project-body">
+        <div class="project-meta"><span class="project-type">Site auteur</span><span class="project-year">2025</span></div>
+        <div class="project-name">MINTOIBA Faroukou — Auteur</div>
+        <div class="project-desc">Site vitrine luxe pour un écrivain et activiste. Esthétique dark editorial, animations CSS, biographie et bibliographie complètes.</div>
+        <div class="project-tags"><span class="project-tag">HTML/CSS</span><span class="project-tag">Animations</span><span class="project-tag">FontAwesome</span></div>
+        <div class="project-links"><a href="https://elfk.netlify.app/" class="project-link"><i class="fas fa-eye"></i> Voir</a><a href="#" class="project-link"><i class="fab fa-github"></i> AC</a></div>
+      </div>
+    </div>
+    <div class="project-card fade-in-up">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0a1a05,#1a4d0a);">📚<div class="project-thumb-overlay"></div></div>
+      <div class="project-body">
+        <div class="project-meta"><span class="project-type">Web App</span><span class="project-year">2025</span></div>
+        <div class="project-name">StoryNova</div>
+        <div class="project-desc">Plateforme d'histoires dynamiques avec Firebase, Firestore et authentification Google. Contenu interactif et rendu dynamique.</div>
+        <div class="project-tags"><span class="project-tag">Firebase</span><span class="project-tag">Firestore</span><span class="project-tag">JavaScript</span></div>
+        <div class="project-links"><a href="https://storynovas.netlify.app" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a></div>
+      </div>
+    </div>
+    <div class="project-card fade-in-up">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1a0a00,#5c2e00);">📊<div class="project-thumb-overlay"></div></div>
+      <div class="project-body">
+        <div class="project-meta"><span class="project-type">Dashboard</span><span class="project-year">2025</span></div>
+        <div class="project-name">Syndrix Dashboard</div>
+        <div class="project-desc">Dashboard YouTube-style avec Chart.js — gestion utilisateurs, graphiques revenus, simulation boursière en direct.</div>
+        <div class="project-tags"><span class="project-tag">Chart.js</span><span class="project-tag">JavaScript</span><span class="project-tag">UI/UX</span></div>
+        <div class="project-links"><a href="https://syndrix.netlify.app/" class="project-link"><i class="fas fa-eye"></i> Voir</a></div>
+      </div>
+    </div>
+    <div class="project-card fade-in-up">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3d);">💰<div class="project-thumb-overlay"></div></div>
+      <div class="project-body">
+        <div class="project-meta"><span class="project-type">Simulation App</span><span class="project-year">2025</span></div>
+        <div class="project-name">CryptoSim</div>
+        <div class="project-desc">App d'investissement crypto simulé (single file HTML). Graphiques animés, panneau admin cheat, boutique luxury goods, système de diplomatie.</div>
+        <div class="project-tags"><span class="project-tag">PWA</span><span class="project-tag">Web Audio</span><span class="project-tag">Charts</span></div>
+        <div class="project-links"><a href="#" class="project-link"><i class="fas fa-eye"></i> Projet personnel</a></div>
+      </div>
+    </div>
+    <div class="project-card fade-in-up">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1a0014,#4d003d);">✂️<div class="project-thumb-overlay"></div></div>
+      <div class="project-body">
+        <div class="project-meta"><span class="project-type">Site Vitrine</span><span class="project-year">2024</span></div>
+        <div class="project-name">Glam'Afrik Salon</div>
+        <div class="project-desc">Site vitrine pour salon de coiffure togolais. WhatsApp intégré, animations modernes, mobile-first, galerie de prestations.</div>
+        <div class="project-tags"><span class="project-tag">HTML/CSS</span><span class="project-tag">WhatsApp API</span><span class="project-tag">Mobile</span></div>
+        <div class="project-links"><a href="https://glam-safrik.netlify.app/" class="project-link"><i class="fas fa-eye"></i> Voir</a></div>
+      </div>
+    </div>
+    <div class="project-card fade-in-up">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1a1000,#4d3200);">🍽️<div class="project-thumb-overlay"></div></div>
+      <div class="project-body">
+        <div class="project-meta"><span class="project-type">Site Vitrine</span><span class="project-year">2024</span></div>
+        <div class="project-name">La Maison Dorée</div>
+        <div class="project-desc">Restaurant gastronomique de luxe. Ambiance premium, menu interactif, réservation WhatsApp, animations séduisantes.</div>
+        <div class="project-tags"><span class="project-tag">HTML/CSS</span><span class="project-tag">JavaScript</span><span class="project-tag">Luxury</span></div>
+        <div class="project-links"><a href="https://lamaisondore.netlify.app/" class="project-link"><i class="fas fa-eye"></i> Voir</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section id="team" class="team-section">
+  <div style="text-align:center;margin-bottom:3rem;">
+    <div class="section-label">Équipe</div>
+    <h2 class="section-title">Ceux qui font tourner la machine</h2>
+    <p class="section-desc" style="margin:0 auto;">Une équipe créative, passionnée, et toujours prête à livrer. 💪</p>
+  </div>
+  <div class="team-grid" id="teamGrid"></div>
+  <div style="text-align:center;">
+    <div id="add-member-wrap">
+      <button class="add-member-btn" onclick="openAddMemberModal()"><i class="fas fa-user-plus"></i> Ajouter un membre</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RECRUITMENT ===== -->
+<section id="recruitment" style="padding:90px 8%;">
+  <div class="recruit-wrap">
+    <div class="recruit-info fade-in-up">
+      <div class="section-label">Recrutement</div>
+      <h2>Rejoins la team MZ 🔥</h2>
+      <div class="divider"></div>
+      <p>Tu as du talent et tu veux construire quelque chose de solide ? On cherche des personnes motivées, créatives et sérieuses pour rejoindre l'aventure.</p>
+      <div class="recruit-perks">
+        <div class="perk">
+          <div class="perk-icon"><i class="fas fa-rocket"></i></div>
+          <div class="perk-text"><strong>Projets stimulants</strong><span>Des missions variées, jamais ennuyeuses, qui font progresser.</span></div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><i class="fas fa-users"></i></div>
+          <div class="perk-text"><strong>Équipe soudée</strong><span>Une atmosphère de collaboration, de respect et de partage.</span></div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><i class="fas fa-chart-bar"></i></div>
+          <div class="perk-text"><strong>Évolution rapide</strong><span>Montez en compétence et en responsabilité selon votre engagement.</span></div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="perk-text"><strong>Basé à Lomé, Togo 🇹🇬</strong><span>Réseau local fort, impact africain, vision internationale.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="recruit-form fade-in-up">
+      <div id="recruitFormWrap">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Nom *</label>
+            <input class="form-input" id="r_nom" placeholder="Votre nom" type="text"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Prénom *</label>
+            <input class="form-input" id="r_prenom" placeholder="Votre prénom" type="text"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact (téléphone / WhatsApp) *</label>
+            <input class="form-input" id="r_contact" placeholder="+228 XX XX XX XX" type="tel"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">E-mail</label>
+            <input class="form-input" id="r_email" placeholder="email@exemple.com" type="email"/>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Domaine *</label>
+            <select class="form-select" id="r_domaine">
+              <option value="">-- Choisir un domaine --</option>
+              <option value="designer">🎨 Designer (UI/UX, Graphisme)</option>
+              <option value="dev-front">💻 Développeur Front-End</option>
+              <option value="dev-back">⚙️ Développeur Back-End</option>
+              <option value="fullstack">🔥 Développeur Fullstack</option>
+              <option value="dev-mobile">📱 Développeur Mobile</option>
+              <option value="clientele">🤝 Relation Client / Commercial</option>
+              <option value="former">📚 Formateur / Mentor</option>
+              <option value="devops">🔧 DevOps / Admin Système</option>
+              <option value="content">✍️ Créateur de contenu / Rédacteur</option>
+              <option value="marketing">📣 Marketing Digital / SEO</option>
+              <option value="data">📊 Data Analyst / Business Intelligence</option>
+              <option value="securite">🔐 Cybersécurité</option>
+              <option value="autre">💡 Autre</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Présentez-vous brièvement</label>
+            <textarea class="form-textarea" id="r_bio" placeholder="Parlez de vous, votre expérience, vos motivations..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Lien Portfolio / GitHub / Réseau</label>
+            <input class="form-input" id="r_lien" placeholder="https://..." type="url"/>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Disponibilité</label>
+            <select class="form-select" id="r_dispo">
+              <option value="">-- Quand pouvez-vous commencer ? --</option>
+              <option value="immediat">Immédiatement</option>
+              <option value="1semaine">Dans 1 semaine</option>
+              <option value="1mois">Dans 1 mois</option>
+              <option value="flexible">Flexible / À discuter</option>
+            </select>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="submitRecruitForm()"><i class="fas fa-paper-plane"></i> Envoyer ma candidature</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <i class="fas fa-check-circle"></i>
+        <strong>Candidature reçue ! 🎉</strong>
+        <p style="color:var(--muted);margin-top:0.5rem;">Merci pour votre intérêt. M. Zack vous contactera très prochainement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="contact-section">
+  <div style="text-align:center;margin-bottom:3rem;">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Parlons de votre projet</h2>
+    <p class="section-desc" style="margin:0 auto;">Disponible pour des missions freelance, collaborations et partenariats. N'hésitez pas !</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card fade-in-up">
+      <div class="contact-icon" style="color:#25D366;background:rgba(37,211,102,0.1)"><i class="fab fa-whatsapp"></i></div>
+      <div class="contact-type">WhatsApp & Appel</div>
+      <div class="contact-value">+228 79 14 23 07</div>
+      <div class="contact-btns">
+        <a href="https://wa.me/22879142307" target="_blank" class="contact-btn wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="tel:+22879142307" class="contact-btn call"><i class="fas fa-phone"></i> Appeler</a>
+      </div>
+    </div>
+    <div class="contact-card fade-in-up">
+      <div class="contact-icon" style="color:#EA4335;background:rgba(234,67,53,0.1)"><i class="fas fa-envelope"></i></div>
+      <div class="contact-type">E-mail Professionnel</div>
+      <div class="contact-value">zackdevellop@gmail.com</div>
+      <div class="contact-btns">
+        <a href="mailto:zackdevellop@gmail.com" class="contact-btn mail"><i class="fas fa-envelope"></i> Envoyer</a>
+      </div>
+    </div>
+    <div class="contact-card fade-in-up">
+      <div class="contact-icon" style="color:#9333EA;background:rgba(147,51,234,0.1)"><i class="fas fa-envelope-open-text"></i></div>
+      <div class="contact-type">E-mail Personnel</div>
+      <div class="contact-value">levraizack67@gmail.com</div>
+      <div class="contact-btns">
+        <a href="mailto:levraizack67@gmail.com" class="contact-btn" style="background:rgba(147,51,234,0.1);border-color:rgba(147,51,234,0.3);color:#9333EA"><i class="fas fa-envelope"></i> Envoyer</a>
+      </div>
+    </div>
+    <div class="contact-card fade-in-up">
+      <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div class="contact-type">Localisation</div>
+      <div class="contact-value">Lomé, Togo 🇹🇬</div>
+      <div style="font-size:0.82rem;color:var(--muted);">Disponible pour missions à distance &amp; sur site</div>
+    </div>
+  </div>
+  <div class="contact-cta fade-in-up">
+    <h3>Prêt à lancer votre projet ? 🚀</h3>
+    <p>Un site, une app, un dashboard — on le construit ensemble. Devis gratuit sous 24h.</p>
+    <a href="https://wa.me/22879142307?text=Bonjour%20M.%20Zack%2C%20j%27ai%20un%20projet%20web%20dont%20je%20voudrais%20discuter." target="_blank" class="btn-primary" style="display:inline-flex;"><i class="fab fa-whatsapp"></i> Discutons maintenant</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-logo">MZ.</div>
+  <div class="footer-copy">
+    © <span class="footer-year" id="footerYear">2025</span> MINTOIBA Zack. Tous droits réservés.<br>
+    <span style="font-size:0.75rem;">Conçu &amp; développé avec ❤️ depuis Lomé, Togo 🇹🇬</span>
+  </div>
+  <div class="footer-social">
+    <a href="https://wa.me/22879142307" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:zackdevellop@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://github.com/levraizack67-netizen/ZackWD" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</footer>
+
+<!-- ===== AUTH MODAL STEP 1 ===== -->
+<div class="modal-overlay" id="authModal1">
+  <div class="modal">
+    <div class="modal-icon"><i class="fas fa-shield-alt"></i></div>
+    <h3>Accès Sécurisé</h3>
+    <p>Zone protégée. Veuillez entrer votre code d'accès principal.</p>
+    <input class="modal-input" id="auth1Input" type="password" placeholder="••••••••••••••" autocomplete="off"/>
+    <div class="modal-err" id="auth1Err"></div>
+    <button class="modal-btn" onclick="checkAuth1()"><i class="fas fa-unlock"></i> Continuer</button>
+  </div>
+</div>
+
+<!-- ===== AUTH MODAL STEP 2 ===== -->
+<div class="modal-overlay" id="authModal2">
+  <div class="modal">
+    <div class="modal-icon" style="color:var(--warn);background:rgba(245,158,11,0.1);border-color:var(--warn)"><i class="fas fa-lock"></i></div>
+    <h3>Double Authentification</h3>
+    <p>Confirmation requise. Entrez le second code de vérification.</p>
+    <input class="modal-input" id="auth2Input" type="password" placeholder="••••••••••••" autocomplete="off"/>
+    <div class="modal-err" id="auth2Err"></div>
+    <button class="modal-btn" onclick="checkAuth2()"><i class="fas fa-check-shield"></i> Valider</button>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-header">
+    <div class="admin-title"><i class="fas fa-cog"></i> Panneau Admin <span class="admin-badge">SECRET</span></div>
+    <button class="admin-close" onclick="closeAdmin()"><i class="fas fa-times"></i> Fermer</button>
+  </div>
+  <div class="admin-body">
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('team')"><i class="fas fa-users"></i> Équipe</button>
+      <button class="admin-tab" onclick="switchAdminTab('add')"><i class="fas fa-user-plus"></i> Ajouter membre</button>
+      <button class="admin-tab" onclick="switchAdminTab('recruits')"><i class="fas fa-inbox"></i> Candidatures <span id="recruitBadge" style="background:var(--accent);color:#fff;font-size:0.65rem;padding:0.1rem 0.45rem;border-radius:100px;margin-left:4px;"></span></button>
+    </div>
+
+    <!-- Team management -->
+    <div class="admin-section active" id="adminTeamSection">
+      <h3>Gérer l'équipe</h3>
+      <div class="admin-team-list" id="adminTeamList"></div>
+    </div>
+
+    <!-- Add member -->
+    <div class="admin-section" id="adminAddSection">
+      <h3>Ajouter un membre</h3>
+      <div class="admin-form">
+        <h4><i class="fas fa-user-plus"></i> Nouveau membre</h4>
+        <div class="admin-mini-grid">
+          <input class="admin-input" id="add_name" placeholder="Nom complet *" type="text"/>
+          <input class="admin-input" id="add_role" placeholder="Poste / Rôle *" type="text"/>
+          <input class="admin-input" id="add_contact" placeholder="Contact (téléphone/email)" type="text"/>
+          <input class="admin-input" id="add_emoji" placeholder="Emoji avatar (ex: 👨‍💻)" type="text"/>
+        </div>
+        <div style="margin-top:1rem;">
+          <button class="admin-btn primary" onclick="addTeamMember()"><i class="fas fa-plus"></i> Ajouter</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Candidatures -->
+    <div class="admin-section" id="adminRecruitSection">
+      <h3>Candidatures reçues</h3>
+      <div class="admin-error-banner" id="recruitErrorBanner">
+        <i class="fas fa-triangle-exclamation" style="margin-top:0.15rem;"></i>
+        <div><strong>Erreur de connexion à la base de données.</strong><br><span id="recruitErrorMsg" style="font-size:0.8rem;"></span><br><span style="font-size:0.78rem;opacity:0.85;">→ Vérifie tes règles de sécurité Firestore (Firebase Console → Firestore Database → Règles) : elles doivent autoriser la lecture/écriture sur la collection "recruits".</span></div>
+      </div>
+      <div class="recruit-filters">
+        <button class="recruit-filter-btn active" data-filter="toutes" onclick="setRecruitFilter('toutes')"><i class="fas fa-list"></i> Toutes</button>
+        <button class="recruit-filter-btn" data-filter="en_attente" onclick="setRecruitFilter('en_attente')"><i class="fas fa-hourglass-half"></i> En attente</button>
+        <button class="recruit-filter-btn" data-filter="accepte" onclick="setRecruitFilter('accepte')"><i class="fas fa-check"></i> Acceptées</button>
+        <button class="recruit-filter-btn" data-filter="refuse" onclick="setRecruitFilter('refuse')"><i class="fas fa-xmark"></i> Refusées</button>
+      </div>
+      <div class="submissions-list" id="submissionsList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== EDIT MEMBER MODAL ===== -->
+<div class="modal-overlay" id="editMemberModal">
+  <div class="modal">
+    <div class="modal-close" onclick="closeEditModal()"><i class="fas fa-times"></i></div>
+    <div class="modal-icon" style="color:var(--cyan);background:var(--glow2);border-color:var(--cyan)"><i class="fas fa-user-edit"></i></div>
+    <h3>Modifier le membre</h3>
+    <p>Mettez à jour les informations de ce membre.</p>
+    <div class="edit-modal-body">
+      <input class="modal-input" id="edit_name" placeholder="Nom complet" type="text"/>
+      <input class="modal-input" id="edit_role" placeholder="Poste / Rôle" type="text"/>
+      <input class="modal-input" id="edit_contact" placeholder="Contact" type="text"/>
+      <input class="modal-input" id="edit_emoji" placeholder="Emoji avatar" type="text"/>
+    </div>
+    <div style="margin-top:1rem;"></div>
+    <input type="hidden" id="edit_id"/>
+    <button class="modal-btn" onclick="saveEditMember()"><i class="fas fa-save"></i> Sauvegarder</button>
+  </div>
+</div>
+
+<!-- ===== ADD MEMBER MODAL (public) ===== -->
+<div class="modal-overlay" id="addMemberModal">
+  <div class="modal">
+    <div class="modal-close" onclick="document.getElementById('addMemberModal').classList.remove('show')"><i class="fas fa-times"></i></div>
+    <div class="modal-icon"><i class="fas fa-user-plus"></i></div>
+    <h3>Ajouter un membre</h3>
+    <p>Ajout via le panneau public (admin requis).</p>
+    <div style="font-size:0.85rem;color:var(--muted);text-align:center;">Utilisez le panneau admin pour ajouter des membres.</div>
+  </div>
+</div>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, doc, getDocs, addDoc, setDoc, deleteDoc, updateDoc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCmebfSc4C9uvjuUqEnqwepYK5--lfLGyk",
+  authDomain: "zack-webdev.firebaseapp.com",
+  projectId: "zack-webdev",
+  storageBucket: "zack-webdev.firebasestorage.app",
+  messagingSenderId: "1079247213078",
+  appId: "1:1079247213078:web:bdbe9abc79dbd1a8ce1b37",
+  measurementId: "G-X9EEDTZBGY"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Expose Firestore helpers to window for use in non-module script
+window._fs = { db, collection, doc, getDocs, addDoc, setDoc, deleteDoc, updateDoc, onSnapshot, getDoc };
+
+// Realtime listeners — update UI automatically on data change
+onSnapshot(collection(db, "team"), () => { if (window.renderTeam) window.renderTeam(); if (window.renderAdminTeam) window.renderAdminTeam(); });
+onSnapshot(collection(db, "recruits"), () => { if (window.renderSubmissions) window.renderSubmissions(); if (window.updateRecruitBadge) window.updateRecruitBadge(); });
+</script>
+
+<script>
+// ===== SYSTEM INIT =====
+// ⚠️ Obfuscation — Ne pas modifier
+const _sys = (() => {
+  const _x = [8,1,3,11,5,18,9,20,15,4,21,3,15,9,14];
+  const _y = [16,25,8,20,13,12,3,19,19,10,19];
+  const _r = (a) => a.map(n => String.fromCharCode(n + 64)).join('');
+  return { _g1: _r(_x), _g2: _r(_y) };
+})();
+
+
+
+// ===== DATABASE — FIRESTORE =====
+const DB = {
+  // TEAM
+  getTeam: async () => {
+    const { db, collection, getDocs } = window._fs;
+    const snap = await getDocs(collection(db, "team"));
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  },
+  addTeamMember: async (m) => {
+    const { db, collection, doc, setDoc } = window._fs;
+    await setDoc(doc(collection(db, "team"), m.id), m);
+  },
+  updateTeamMember: async (id, data) => {
+    const { db, doc, updateDoc } = window._fs;
+    await updateDoc(doc(db, "team", id), data);
+  },
+  deleteTeamMember: async (id) => {
+    const { db, doc, deleteDoc } = window._fs;
+    await deleteDoc(doc(db, "team", id));
+  },
+
+  // RECRUITS
+  getRecruits: async () => {
+    const { db, collection, getDocs } = window._fs;
+    const snap = await getDocs(collection(db, "recruits"));
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  },
+  addRecruit: async (r) => {
+    const { db, collection, doc, setDoc } = window._fs;
+    await setDoc(doc(collection(db, "recruits"), r.id), r);
+  },
+  deleteRecruit: async (id) => {
+    const { db, doc, deleteDoc } = window._fs;
+    await deleteDoc(doc(db, "recruits", id));
+  },
+  updateRecruitStatus: async (id, status) => {
+    const { db, doc, updateDoc } = window._fs;
+    await updateDoc(doc(db, "recruits", id), { status });
+  },
+
+  // LIKES — stored per member doc, userLikes stays local
+  getLikes: async () => {
+    const { db, collection, getDocs } = window._fs;
+    const snap = await getDocs(collection(db, "team"));
+    const likes = {};
+    snap.docs.forEach(d => { likes[d.id] = d.data().likes || 0; });
+    return likes;
+  },
+  setLike: async (id, count) => {
+    const { db, doc, updateDoc } = window._fs;
+    await updateDoc(doc(db, "team", id), { likes: count });
+  },
+  getUserLikes: () => JSON.parse(localStorage.getItem('mz_user_likes') || '[]'),
+  setUserLikes: (d) => localStorage.setItem('mz_user_likes', JSON.stringify(d)),
+};
+
+// ===== THEME =====
+let isDark = true;
+function initTheme() {
+  const saved = localStorage.getItem('mz_theme') || 'dark';
+  isDark = saved === 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  document.getElementById('themeIcon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+}
+function toggleTheme() {
+  isDark = !isDark;
+  const t = isDark ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('mz_theme', t);
+  document.getElementById('themeIcon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+}
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+// ===== BURGER =====
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ===== TERMINAL ANIMATION =====
+function animateTerminal() {
+  const lines = document.querySelectorAll('.t-line');
+  lines.forEach((l, i) => {
+    setTimeout(() => l.classList.add('show'), i * 280);
+  });
+}
+
+// ===== COUNTER ANIMATION =====
+function animateCount(el, target, suffix='') {
+  let cur = 0; const step = target / 40;
+  const t = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = Math.floor(cur) + suffix;
+    if (cur >= target) clearInterval(t);
+  }, 30);
+}
+
+// ===== SKILL BARS =====
+function animateSkills() {
+  document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+    const w = bar.getAttribute('data-w');
+    setTimeout(() => { bar.style.width = w + '%'; }, 200);
+  });
+}
+
+// ===== FADE IN UP =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      if (e.target.closest('#skills')) animateSkills();
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+// Stats counter trigger
+const statsObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    animateCount(document.getElementById('st1'), 12);
+    animateCount(document.getElementById('st2'), 7);
+    animateCount(document.getElementById('st3'), 1, '+');
+    statsObs.disconnect();
+  }
+}, { threshold: 0.5 });
+statsObs.observe(document.querySelector('.hero-stats'));
+
+// ===== TOAST =====
+function toast(msg, type='info') {
+  const wrap = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  const icons = { success:'fa-check-circle', error:'fa-times-circle', info:'fa-info-circle' };
+  t.innerHTML = `<i class="fas ${icons[type]}"></i> ${msg}`;
+  wrap.appendChild(t);
+  setTimeout(() => { t.style.opacity='0'; t.style.transform='translateX(100%)'; t.style.transition='all 0.3s'; setTimeout(()=>t.remove(),300); }, 3000);
+}
+
+// Échappe le HTML pour éviter tout problème d'affichage avec des caractères spéciaux
+function escapeHtml(str) {
+  if (str === undefined || str === null) return '';
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ===== TEAM =====
+let adminMode = false;
+async function renderTeam() {
+  const team = await DB.getTeam();
+  const likes = await DB.getLikes();
+  const userLikes = DB.getUserLikes();
+  const grid = document.getElementById('teamGrid');
+  if (!grid) return;
+  if (!team.length) {
+    grid.innerHTML = '<div class="empty-team" style="grid-column:1/-1;"><i class="fas fa-users" style="font-size:3rem;opacity:0.2;display:block;margin-bottom:1rem;"></i>L\'équipe arrive bientôt ! 🚀</div>';
+    return;
+  }
+  grid.innerHTML = team.map(m => {
+    const lcount = likes[m.id] || 0;
+    const liked = userLikes.includes(m.id);
+    return `<div class="team-card ${adminMode?'admin-mode':''}" id="tc-${m.id}">
+      ${adminMode ? `<div class="team-admin-actions">
+        <button class="team-admin-btn edit" onclick="openEditMember('${m.id}')" title="Modifier"><i class="fas fa-pen"></i></button>
+        <button class="team-admin-btn del" onclick="deleteTeamMember('${m.id}')" title="Supprimer"><i class="fas fa-trash"></i></button>
+      </div>` : ''}
+      <div class="team-avatar">${m.emoji || '👤'}</div>
+      <div class="team-name">${m.name}</div>
+      <div class="team-role">${m.role}</div>
+      <div class="team-contact">${m.contact || ''}</div>
+      <button class="team-like-btn ${liked?'liked':''}" onclick="toggleLike('${m.id}')">
+        <i class="fas fa-heart"></i> <span id="lc-${m.id}">${lcount}</span>
+      </button>
+    </div>`;
+  }).join('');
+}
+
+async function toggleLike(id) {
+  const likes = await DB.getLikes();
+  const userLikes = DB.getUserLikes();
+  const idx = userLikes.indexOf(id);
+  if (idx === -1) {
+    likes[id] = (likes[id] || 0) + 1;
+    userLikes.push(id);
+  } else {
+    likes[id] = Math.max((likes[id] || 1) - 1, 0);
+    userLikes.splice(idx, 1);
+  }
+  await DB.setLike(id, likes[id]);
+  DB.setUserLikes(userLikes);
+  const el = document.getElementById('lc-' + id);
+  if (el) el.textContent = likes[id];
+  const btn = el?.closest('.team-like-btn');
+  if (btn) btn.classList.toggle('liked', userLikes.includes(id));
+}
+
+function openAddMemberModal() { showToast('Connectez-vous au panneau admin pour ajouter un membre.', 'info'); }
+async function openEditMember(id) {
+  const team = await DB.getTeam();
+  const m = team.find(x => x.id === id);
+  if (!m) return;
+  document.getElementById('edit_id').value = id;
+  document.getElementById('edit_name').value = m.name;
+  document.getElementById('edit_role').value = m.role;
+  document.getElementById('edit_contact').value = m.contact || '';
+  document.getElementById('edit_emoji').value = m.emoji || '';
+  document.getElementById('editMemberModal').classList.add('show');
+}
+function closeEditModal() { document.getElementById('editMemberModal').classList.remove('show'); }
+async function saveEditMember() {
+  const id = document.getElementById('edit_id').value;
+  const team = await DB.getTeam();
+  const idx = team.findIndex(x => x.id === id);
+  if (idx === -1) return;
+  team[idx].name = document.getElementById('edit_name').value || team[idx].name;
+  team[idx].role = document.getElementById('edit_role').value || team[idx].role;
+  team[idx].contact = document.getElementById('edit_contact').value;
+  team[idx].emoji = document.getElementById('edit_emoji').value || '👤';
+  await DB.updateTeamMember(id, { name: team[idx].name, role: team[idx].role, contact: team[idx].contact, emoji: team[idx].emoji });
+  closeEditModal();
+  renderTeam();
+  renderAdminTeam();
+  toast('Membre mis à jour ! ✅', 'success');
+}
+async function deleteTeamMember(id) {
+  if (!confirm('Supprimer ce membre ?')) return;
+  await DB.deleteTeamMember(id);
+  renderTeam();
+  renderAdminTeam();
+  toast('Membre supprimé.', 'info');
+}
+
+// ===== RECRUIT FORM =====
+async function submitRecruitForm() {
+  const nom = document.getElementById('r_nom').value.trim();
+  const prenom = document.getElementById('r_prenom').value.trim();
+  const contact = document.getElementById('r_contact').value.trim();
+  const domaine = document.getElementById('r_domaine').value;
+  if (!nom || !prenom || !contact || !domaine) { toast('Merci de remplir tous les champs obligatoires (*).', 'error'); return; }
+  const entry = {
+    id: Date.now().toString(),
+    nom, prenom, contact,
+    email: document.getElementById('r_email').value.trim(),
+    domaine,
+    bio: document.getElementById('r_bio').value.trim(),
+    lien: document.getElementById('r_lien').value.trim(),
+    dispo: document.getElementById('r_dispo').value,
+    date: new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'long',year:'numeric'}),
+    timestamp: Date.now(),
+    status: 'en_attente'
+  };
+  try {
+    await DB.addRecruit(entry);
+    document.getElementById('recruitFormWrap').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    updateRecruitBadge();
+    toast('Candidature envoyée avec succès ! 🎉', 'success');
+  } catch (err) {
+    console.error('Erreur envoi candidature:', err);
+    toast("Erreur lors de l'envoi. Réessaie dans un instant.", 'error');
+  }
+}
+
+// ===== ADMIN AUTH =====
+let _atmp1 = 0, _atmp2 = 0;
+function triggerAdminLogin() {
+  document.getElementById('auth1Input').value = '';
+  document.getElementById('auth1Err').textContent = '';
+  document.getElementById('authModal1').classList.add('show');
+}
+function checkAuth1() {
+  const val = document.getElementById('auth1Input').value;
+  if (val === _sys._g1) {
+    document.getElementById('authModal1').classList.remove('show');
+    document.getElementById('auth2Input').value = '';
+    document.getElementById('auth2Err').textContent = '';
+    document.getElementById('authModal2').classList.add('show');
+    _atmp1 = 0;
+  } else {
+    _atmp1++;
+    document.getElementById('auth1Err').textContent = `Code incorrect (tentative ${_atmp1}/3)`;
+    if (_atmp1 >= 3) { document.getElementById('authModal1').classList.remove('show'); _atmp1=0; toast('Trop de tentatives. Réessayez plus tard.','error'); }
+  }
+}
+function checkAuth2() {
+  const val = document.getElementById('auth2Input').value;
+  if (val === _sys._g2) {
+    document.getElementById('authModal2').classList.remove('show');
+    openAdminPanel();
+    _atmp2 = 0;
+  } else {
+    _atmp2++;
+    document.getElementById('auth2Err').textContent = `Code de confirmation incorrect (${_atmp2}/3)`;
+    if (_atmp2 >= 3) { document.getElementById('authModal2').classList.remove('show'); _atmp2=0; toast('Trop de tentatives.','error'); }
+  }
+}
+document.getElementById('auth1Input').addEventListener('keydown', e => { if(e.key==='Enter') checkAuth1(); });
+document.getElementById('auth2Input').addEventListener('keydown', e => { if(e.key==='Enter') checkAuth2(); });
+
+// ===== FOOTER SECRET TRIGGER =====
+let _ftClicks = 0, _ftTimer;
+document.getElementById('footerYear').addEventListener('click', () => {
+  _ftClicks++;
+  clearTimeout(_ftTimer);
+  _ftTimer = setTimeout(() => { _ftClicks = 0; }, 1500);
+  if (_ftClicks >= 5) { _ftClicks = 0; triggerAdminLogin(); }
+});
+
+// ===== ADMIN PANEL =====
+function openAdminPanel() {
+  adminMode = true;
+  document.getElementById('adminPanel').classList.add('show');
+  document.getElementById('add-member-wrap').classList.add('show');
+  renderTeam();
+  renderAdminTeam();
+  renderSubmissions();
+  updateRecruitBadge();
+}
+function closeAdmin() {
+  adminMode = false;
+  document.getElementById('adminPanel').classList.remove('show');
+  document.getElementById('add-member-wrap').classList.remove('show');
+  renderTeam();
+}
+function switchAdminTab(tab) {
+  document.querySelectorAll('.admin-tab').forEach((t,i)=>{
+    const tabs=['team','add','recruits'];
+    t.classList.toggle('active', tabs[i]===tab);
+  });
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(`admin${tab.charAt(0).toUpperCase()+tab.slice(1)}Section`).classList.add('active');
+}
+async function renderAdminTeam() {
+  const team = await DB.getTeam();
+  const likes = await DB.getLikes();
+  const list = document.getElementById('adminTeamList');
+  if (!team.length) { list.innerHTML = '<div class="no-data">Aucun membre pour l\'instant.</div>'; return; }
+  list.innerHTML = team.map(m => `
+    <div class="admin-member-card">
+      <div style="font-size:2rem;margin-bottom:0.5rem;">${m.emoji||'👤'}</div>
+      <div class="admin-member-name">${m.name}</div>
+      <div class="admin-member-role">${m.role}</div>
+      <div class="admin-member-contact">${m.contact||'—'}</div>
+      <div class="admin-like-ctrl">
+        <button class="like-ctrl-btn" onclick="adjLike('${m.id}',-1)"><i class="fas fa-minus"></i></button>
+        <span class="like-count-display" id="alc-${m.id}">${likes[m.id]||0}</span>
+        <button class="like-ctrl-btn" onclick="adjLike('${m.id}',1)"><i class="fas fa-plus"></i></button>
+      </div>
+      <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
+        <button class="admin-btn primary" style="font-size:0.78rem;padding:0.4rem 0.9rem;" onclick="openEditMember('${m.id}')"><i class="fas fa-pen"></i> Éditer</button>
+        <button class="admin-btn danger" style="font-size:0.78rem;padding:0.4rem 0.9rem;" onclick="deleteTeamMember('${m.id}')"><i class="fas fa-trash"></i> Supprimer</button>
+      </div>
+    </div>
+  `).join('');
+}
+async function adjLike(id, delta) {
+  const likes = await DB.getLikes();
+  likes[id] = Math.max((likes[id]||0) + delta, 0);
+  await DB.setLike(id, likes[id]);
+  const el = document.getElementById('alc-' + id);
+  if (el) el.textContent = likes[id];
+  const el2 = document.getElementById('lc-' + id);
+  if (el2) el2.textContent = likes[id];
+}
+async function addTeamMember() {
+  const name = document.getElementById('add_name').value.trim();
+  const role = document.getElementById('add_role').value.trim();
+  if (!name || !role) { toast('Nom et rôle requis !', 'error'); return; }
+  const m = {
+    id: Date.now().toString(),
+    name, role,
+    contact: document.getElementById('add_contact').value.trim(),
+    emoji: document.getElementById('add_emoji').value.trim() || '👤'
+  };
+  await DB.addTeamMember(m);
+  ['add_name','add_role','add_contact','add_emoji'].forEach(id=>document.getElementById(id).value='');
+  renderTeam();
+  renderAdminTeam();
+  toast(`${m.name} ajouté à l'équipe ! 🎉`, 'success');
+}
+let _recruitsCache = [];
+let _recruitFilter = 'toutes';
+const DOMAIN_LABELS = { designer:'Designer', 'dev-front':'Dev Front-End', 'dev-back':'Dev Back-End', fullstack:'Fullstack', 'dev-mobile':'Dev Mobile', clientele:'Relation Client', former:'Formateur', devops:'DevOps', content:'Créateur contenu', marketing:'Marketing', data:'Data Analyst', securite:'Cybersécurité', autre:'Autre' };
+const STATUS_LABELS = { en_attente:'⏳ En attente', accepte:'✅ Acceptée', refuse:'❌ Refusée' };
+
+function setRecruitFilter(filter) {
+  _recruitFilter = filter;
+  document.querySelectorAll('.recruit-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+  renderSubmissionsFromCache();
+}
+
+async function renderSubmissions() {
+  const list = document.getElementById('submissionsList');
+  const errBanner = document.getElementById('recruitErrorBanner');
+  list.innerHTML = '<div class="no-data"><i class="fas fa-spinner fa-spin"></i> Chargement des candidatures...</div>';
+  errBanner.classList.remove('show');
+  try {
+    _recruitsCache = await DB.getRecruits();
+    // Rétro-compatibilité : les candidatures envoyées avant l'ajout du statut n'en ont pas
+    _recruitsCache.forEach(r => { if (!r.status) r.status = 'en_attente'; });
+    renderSubmissionsFromCache();
+    updateRecruitBadge();
+  } catch (err) {
+    console.error('Erreur de lecture des candidatures (Firestore):', err);
+    list.innerHTML = '';
+    document.getElementById('recruitErrorMsg').textContent = err?.message || 'Erreur inconnue.';
+    errBanner.classList.add('show');
+    toast('Impossible de charger les candidatures.', 'error');
+  }
+}
+
+function renderSubmissionsFromCache() {
+  const list = document.getElementById('submissionsList');
+  let recruits = [..._recruitsCache];
+  if (_recruitFilter !== 'toutes') recruits = recruits.filter(r => r.status === _recruitFilter);
+  recruits.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+  if (!recruits.length) {
+    list.innerHTML = `<div class="no-data">${_recruitFilter==='toutes' ? "Aucune candidature reçue pour l'instant." : "Aucune candidature dans cette catégorie."}</div>`;
+    return;
+  }
+  list.innerHTML = recruits.map(r => {
+    const status = r.status || 'en_attente';
+    return `
+    <div class="sub-card status-${status}" id="sub-${r.id}">
+      <div class="sub-card-header">
+        <div class="sub-name">${escapeHtml(r.nom)} ${escapeHtml(r.prenom)}</div>
+        <div class="sub-header-right">
+          <span class="sub-status-badge ${status}">${STATUS_LABELS[status]}</span>
+          <div class="sub-domain">${escapeHtml(DOMAIN_LABELS[r.domaine] || r.domaine)}</div>
+        </div>
+      </div>
+      <div class="sub-info">📞 ${escapeHtml(r.contact)}${r.email ? ' · 📧 ' + escapeHtml(r.email) : ''}</div>
+      ${r.bio ? `<div class="sub-info" style="margin-top:0.4rem;font-style:italic;">"${escapeHtml(r.bio.slice(0,120))}${r.bio.length>120?'...':''}"</div>` : ''}
+      ${r.lien ? `<div class="sub-info" style="margin-top:0.3rem;"><i class="fas fa-link"></i> <a href="${escapeHtml(r.lien)}" target="_blank" style="color:var(--accent);">${escapeHtml(r.lien)}</a></div>` : ''}
+      <div class="sub-date">📅 ${escapeHtml(r.date)} · Dispo: ${escapeHtml(r.dispo) || 'Non précisé'}</div>
+      <div class="sub-actions">
+        <button class="sub-accept-btn ${status==='accepte'?'active':''}" onclick="setRecruitStatus('${r.id}','accepte')"><i class="fas fa-check"></i> Accepter</button>
+        <button class="sub-refuse-btn ${status==='refuse'?'active':''}" onclick="setRecruitStatus('${r.id}','refuse')"><i class="fas fa-xmark"></i> Refuser</button>
+        ${status!=='en_attente' ? `<button class="sub-pending-btn" onclick="setRecruitStatus('${r.id}','en_attente')"><i class="fas fa-rotate-left"></i> Remettre en attente</button>` : ''}
+        <button class="sub-promote-btn" onclick="promoteToTeam('${r.id}')"><i class="fas fa-user-plus"></i> Ajouter à l'équipe</button>
+        <button class="sub-del-btn" onclick="deleteRecruit('${r.id}')"><i class="fas fa-trash"></i> Supprimer</button>
+      </div>
+    </div>
+  `;
+  }).join('');
+}
+
+async function setRecruitStatus(id, status) {
+  try {
+    await DB.updateRecruitStatus(id, status);
+    const r = _recruitsCache.find(x => x.id === id);
+    if (r) r.status = status;
+    renderSubmissionsFromCache();
+    updateRecruitBadge();
+    const labels = { accepte: 'Candidature acceptée ✅', refuse: 'Candidature refusée ❌', en_attente: 'Remise en attente ⏳' };
+    toast(labels[status], status === 'refuse' ? 'info' : 'success');
+  } catch (err) {
+    console.error('Erreur changement de statut:', err);
+    toast('Erreur lors de la mise à jour du statut.', 'error');
+  }
+}
+
+async function deleteRecruit(id) {
+  if (!confirm('Supprimer cette candidature ?')) return;
+  try {
+    await DB.deleteRecruit(id);
+    _recruitsCache = _recruitsCache.filter(r => r.id !== id);
+    renderSubmissionsFromCache();
+    updateRecruitBadge();
+    toast('Candidature supprimée.', 'info');
+  } catch (err) {
+    console.error('Erreur suppression candidature:', err);
+    toast('Erreur lors de la suppression.', 'error');
+  }
+}
+async function promoteToTeam(id) {
+  const r = _recruitsCache.find(x => x.id === id);
+  if (!r) return;
+  const m = { id: Date.now().toString(), name:`${r.prenom} ${r.nom}`, role: DOMAIN_LABELS[r.domaine] || r.domaine, contact: r.contact, emoji:'👤' };
+  try {
+    await DB.addTeamMember(m);
+    await setRecruitStatus(id, 'accepte');
+    renderTeam();
+    renderAdminTeam();
+    toast(`${m.name} ajouté à l'équipe depuis les candidatures ! 🎉`, 'success');
+  } catch (err) {
+    console.error('Erreur promotion candidat:', err);
+    toast("Erreur lors de l'ajout à l'équipe.", 'error');
+  }
+}
+async function updateRecruitBadge() {
+  try {
+    const recruits = _recruitsCache.length ? _recruitsCache : await DB.getRecruits();
+    const pending = recruits.filter(r => !r.status || r.status === 'en_attente').length;
+    const b = document.getElementById('recruitBadge');
+    if (b) b.textContent = pending > 0 ? pending : '';
+  } catch (err) {
+    console.error('Erreur badge candidatures:', err);
+  }
+}
+
+// ===== FOOTER YEAR =====
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  setTimeout(animateTerminal, 400);
+  renderTeam();
+  updateRecruitBadge();
+});
+</script>
+</body>
+</html>
